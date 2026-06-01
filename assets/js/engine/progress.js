@@ -234,10 +234,26 @@
   /* ------------------------------------------------------------------ *
    * Non-blocking banner when persistence is not confirmed over file://.
    * ------------------------------------------------------------------ */
+  var BANNER_DISMISS_KEY = "lnat.bannerDismissed.v1";
+
+  // Read/write the banner-dismissed flag. Wrapped in try/catch because the banner
+  // appears precisely when storage may be unreliable; a failure just means the
+  // banner shows again, which is safe.
+  function bannerDismissed() {
+    try { return root.localStorage && root.localStorage.getItem(BANNER_DISMISS_KEY) === "1"; }
+    catch (e) { return false; }
+  }
+  function rememberBannerDismissed() {
+    try { if (root.localStorage) root.localStorage.setItem(BANNER_DISMISS_KEY, "1"); }
+    catch (e) { /* ignore — banner will simply reappear next load */ }
+  }
+
   function showBannerIfNeeded(store) {
     // Show when the active backend cannot confirm cross-reload survival.
     if (store.isReloadConfirmed) return false;
     if (typeof document === "undefined") return false;
+    // Respect a prior dismissal so the banner doesn't nag on every reload.
+    if (bannerDismissed()) return false;
     if (document.getElementById("lnat-storage-banner")) return true;
 
     var banner = document.createElement("div");
@@ -254,6 +270,7 @@
     close.setAttribute("aria-label", "Dismiss this notice");
     close.textContent = "Dismiss";
     close.addEventListener("click", function () {
+      rememberBannerDismissed();
       if (banner.parentNode) banner.parentNode.removeChild(banner);
     });
     banner.appendChild(close);

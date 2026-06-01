@@ -774,9 +774,572 @@
     }
   ];
 
+  /* ======================================================================== *
+   * 2b. GLOSSARY EXPANSION — ~85 additional entries                          *
+   * Covers: advanced/contextual vocab, argument-flaw/logic terms,            *
+   * and tone/register words not already in the core list above.              *
+   * ======================================================================== */
+  var glossaryExpansion = [
+
+    /* --- Argument-flaw / logic terms --- */
+    {
+      term: "Post hoc ergo propter hoc",
+      definition:
+        "Latin: 'after this, therefore because of this'. A fallacy assuming that " +
+        "because B follows A, A caused B. Temporal sequence is not causation."
+    },
+    {
+      term: "Correlation vs causation",
+      definition:
+        "Two variables may co-vary (correlate) without either causing the other; " +
+        "a third factor may explain both. The fallacy confuses statistical association " +
+        "with a causal mechanism."
+    },
+    {
+      term: "False analogy",
+      definition:
+        "Drawing a conclusion by comparing two things that are not sufficiently " +
+        "similar in the relevant respects. The argument fails because the analogy breaks down."
+    },
+    {
+      term: "Red herring",
+      definition:
+        "Introducing an irrelevant point or piece of information to distract from " +
+        "the issue under discussion. The red herring is logically unconnected to the conclusion."
+    },
+    {
+      term: "Equivocation",
+      definition:
+        "Using a key word with two different meanings in the same argument, so that " +
+        "the conclusion appears to follow but only because of the shift in meaning."
+    },
+    {
+      term: "Begging the question",
+      definition:
+        "Assuming the conclusion in the premises — another name for circular reasoning. " +
+        "Often misused colloquially to mean 'raises the question'; in logic it means " +
+        "the argument is viciously circular."
+    },
+    {
+      term: "Necessary condition",
+      definition:
+        "A condition that must be present for the conclusion to hold; its absence " +
+        "guarantees the conclusion is false. If X is necessary for Y: no X → no Y. " +
+        "Distinct from a sufficient condition."
+    },
+    {
+      term: "Sufficient condition",
+      definition:
+        "A condition whose presence alone guarantees the conclusion. If X is sufficient " +
+        "for Y: X → Y. X need not be the only way Y can occur."
+    },
+    {
+      term: "Appeal to authority",
+      definition:
+        "Citing an expert or authority figure as proof of a claim, without examining " +
+        "the strength of the underlying evidence. Legitimate when the authority is " +
+        "relevant and qualified; fallacious when irrelevant or used to avoid argument."
+    },
+    {
+      term: "Appeal to popularity",
+      definition:
+        "Arguing that something is true or correct because many people believe it. " +
+        "Also called argumentum ad populum. Widespread belief does not establish truth."
+    },
+    {
+      term: "Tu quoque",
+      definition:
+        "A fallacy ('you also') that deflects criticism by pointing out the critic's " +
+        "own inconsistency. The critic's behaviour is irrelevant to whether the " +
+        "original argument is sound."
+    },
+    {
+      term: "Suppressed evidence",
+      definition:
+        "Omitting relevant information that would weaken or contradict the conclusion. " +
+        "A fallacy of incomplete evidence, even if all stated facts are true."
+    },
+    {
+      term: "Burden of proof",
+      definition:
+        "The obligation on a party making a claim to provide evidence for it. In " +
+        "logic, whoever makes the positive claim bears the burden; absence of evidence " +
+        "is not evidence of absence."
+    },
+    {
+      term: "False equivalence",
+      definition:
+        "Treating two things as comparable in relevance or importance when they are " +
+        "significantly different. Often used in media by presenting fringe and " +
+        "mainstream positions as equally valid."
+    },
+    {
+      term: "Modus ponens",
+      definition:
+        "A valid argument form: if P then Q; P; therefore Q. The fundamental " +
+        "deductive inference rule — affirming the antecedent."
+    },
+    {
+      term: "Modus tollens",
+      definition:
+        "A valid argument form: if P then Q; not Q; therefore not P. Denying the " +
+        "consequent. Logically equivalent to modus ponens."
+    },
+    {
+      term: "Reductio ad absurdum",
+      definition:
+        "Refuting an argument by showing that accepting its premises leads to an " +
+        "absurd or contradictory conclusion. A legitimate and powerful logical technique."
+    },
+    {
+      term: "Dichotomy",
+      definition:
+        "A division into two mutually exclusive and jointly exhaustive categories. " +
+        "A genuine dichotomy (e.g. true/false) is not a fallacy; a false dichotomy " +
+        "artificially limits options."
+    },
+
+    /* --- Advanced/contextual vocabulary --- */
+    {
+      term: "Tacit",
+      definition:
+        "Understood or implied without being stated explicitly. A tacit assumption " +
+        "is one the author relies on but never articulates."
+    },
+    {
+      term: "Ubiquitous",
+      definition:
+        "Present, appearing, or found everywhere. Often used to describe phenomena " +
+        "or technologies so widespread they are taken for granted."
+    },
+    {
+      term: "Pernicious",
+      definition:
+        "Having a harmful, often subtle, and far-reaching effect. Stronger than " +
+        "'damaging' — implies insidious, hard-to-detect harm."
+    },
+    {
+      term: "Capricious",
+      definition:
+        "Given to sudden, unpredictable changes of mood or behaviour; governed by " +
+        "whim rather than reason or principle."
+    },
+    {
+      term: "Dogmatic",
+      definition:
+        "Inclined to lay down principles as incontrovertibly true, without openness " +
+        "to evidence or argument. A dogmatic position is held by assertion, not reasoning."
+    },
+    {
+      term: "Empirical",
+      definition:
+        "Based on observation or experience rather than theory or logic alone. " +
+        "An empirical claim is one that can in principle be tested or observed."
+    },
+    {
+      term: "Normative",
+      definition:
+        "Relating to or establishing a standard or norm; concerned with how things " +
+        "ought to be, rather than how they are. Contrast with descriptive."
+    },
+    {
+      term: "Descriptive",
+      definition:
+        "Describing how things actually are, without implying how they should be. " +
+        "Contrast with normative."
+    },
+    {
+      term: "Reductive",
+      definition:
+        "Tending to present a complex problem or issue in oversimplified terms; " +
+        "diminishing complexity by reducing it to a single factor."
+    },
+    {
+      term: "Salutary",
+      definition:
+        "Producing a good or beneficial effect, often as a result of something " +
+        "unpleasant. A salutary lesson is an instructive one learned from hardship."
+    },
+    {
+      term: "Tenuous",
+      definition:
+        "Thin, weak, or lacking substance; said of a connection or argument that " +
+        "barely holds together. Tenuous reasoning is logically fragile."
+    },
+    {
+      term: "Vacuous",
+      definition:
+        "Having no meaning or substance; empty of thought or genuine content. " +
+        "A vacuous statement conveys nothing informative."
+    },
+    {
+      term: "Spurious",
+      definition:
+        "False or fake, though appearing genuine; not what it claims to be. A " +
+        "spurious argument resembles a legitimate one but is fundamentally flawed."
+    },
+    {
+      term: "Contentious",
+      definition:
+        "Causing or likely to cause disagreement; controversial. A contentious " +
+        "claim is one that reasonable people dispute."
+    },
+    {
+      term: "Unsubstantiated",
+      definition:
+        "Not supported by evidence; claimed without proof. An unsubstantiated " +
+        "assertion rests only on the author's say-so."
+    },
+    {
+      term: "Pervasive",
+      definition:
+        "Spreading widely throughout something; present at every level. " +
+        "Pervasive problems are difficult to isolate because they affect everything."
+    },
+    {
+      term: "Dichotomous",
+      definition:
+        "Divided into two sharply contrasting groups or categories. A dichotomous " +
+        "framing presents an issue as having only two sides."
+    },
+    {
+      term: "Categorical",
+      definition:
+        "Unqualified and without exceptions; absolute. A categorical claim applies " +
+        "universally, without the qualification of 'most' or 'in some cases'."
+    },
+    {
+      term: "Inherent",
+      definition:
+        "Existing as a permanent, essential, or characteristic attribute. If a flaw " +
+        "is inherent, it cannot be removed without changing the thing itself."
+    },
+    {
+      term: "Extrinsic",
+      definition:
+        "Coming from outside; not an essential or inherent part of something. " +
+        "Extrinsic factors are external causes rather than internal features."
+    },
+    {
+      term: "Intrinsic",
+      definition:
+        "Belonging naturally; essential. Intrinsic value is worth that something " +
+        "has in and of itself, not because of its consequences."
+    },
+    {
+      term: "Nominal",
+      definition:
+        "Existing in name only; not real or substantial. Also used technically to " +
+        "mean 'of or relating to a name or names', or describing very small amounts."
+    },
+    {
+      term: "Substantive",
+      definition:
+        "Having real substance; meaningful and significant in its own right. A " +
+        "substantive objection addresses the core of the argument, not its periphery."
+    },
+    {
+      term: "Inalienable",
+      definition:
+        "Unable to be taken away or transferred. Inalienable rights are rights so " +
+        "fundamental they cannot be relinquished voluntarily or removed by authority."
+    },
+    {
+      term: "Sovereignty",
+      definition:
+        "Supreme power or authority, especially that of a state to govern itself " +
+        "without external interference. Central to arguments about law, governance, " +
+        "and international relations."
+    },
+    {
+      term: "Accountability",
+      definition:
+        "The obligation to accept responsibility and justify one's actions to an " +
+        "authority or the public. A key principle in governance and legal argument."
+    },
+    {
+      term: "Discretion",
+      definition:
+        "The freedom to decide what should be done in a particular situation; the " +
+        "quality of being discreet. Judicial discretion is the latitude judges have " +
+        "to interpret and apply the law."
+    },
+    {
+      term: "Deterrence",
+      definition:
+        "The use of punishment or the threat of consequences to discourage a course " +
+        "of action. A standard justification for criminal penalties."
+    },
+    {
+      term: "Consensus",
+      definition:
+        "General agreement among a group of people. Scientific consensus refers to " +
+        "the collective judgement of most experts in a field."
+    },
+    {
+      term: "Dissent",
+      definition:
+        "The holding or expression of opinions at variance with those commonly or " +
+        "officially held. In law, a dissenting opinion is a judge's disagreement with " +
+        "the majority ruling."
+    },
+    {
+      term: "Rectify",
+      definition:
+        "To put right; to correct an error or injustice. Passages on legal or " +
+        "social reform often argue for or against measures to rectify past wrongs."
+    },
+    {
+      term: "Sanction",
+      definition:
+        "Both a penalty for disobeying a law and the official permission or " +
+        "approval for an action. The dual meaning is a frequent source of equivocation."
+    },
+    {
+      term: "Moratorium",
+      definition:
+        "A temporary suspension of an activity or law; a period of delay authorised " +
+        "by a legal process or agreement."
+    },
+    {
+      term: "Acquiescence",
+      definition:
+        "Reluctant acceptance of or compliance with something without protest. " +
+        "Acquiescence differs from genuine consent, as it involves no active agreement."
+    },
+    {
+      term: "Plurality",
+      definition:
+        "A large number of something; or, in voting contexts, having more votes than " +
+        "any other candidate but not necessarily a majority (more than 50%)."
+    },
+    {
+      term: "Pretext",
+      definition:
+        "A reason given to justify an action that is not the real reason. Identifying " +
+        "a pretext is a key critical-reading skill: look for stated vs actual motives."
+    },
+    {
+      term: "Indeterminate",
+      definition:
+        "Not settled, known, or established; unable to be resolved precisely. An " +
+        "indeterminate outcome is one whose result cannot be conclusively predicted."
+    },
+    {
+      term: "Extrapolate",
+      definition:
+        "To extend a known trend or data set beyond its established range, making " +
+        "an estimate of something unknown. Extrapolation is inductive and may be wrong."
+    },
+    {
+      term: "Interpolate",
+      definition:
+        "To insert something into a text or sequence; or to estimate a value between " +
+        "two known points. Distinct from extrapolation (which goes beyond the range)."
+    },
+    {
+      term: "Mitigate",
+      definition:
+        "To make less severe, serious, or painful; to lessen the impact of. In law, " +
+        "mitigating factors reduce the culpability or sentence of an offender."
+    },
+    {
+      term: "Aggravate",
+      definition:
+        "To make worse or more serious. Aggravating factors in law are circumstances " +
+        "that increase the severity of a crime or the appropriate penalty."
+    },
+    {
+      term: "Egalitarian",
+      definition:
+        "Believing in or based on the principle that all people are equal and deserve " +
+        "equal rights and opportunities."
+    },
+    {
+      term: "Utilitarian",
+      definition:
+        "Based on the doctrine that the morally correct action is the one that " +
+        "produces the greatest good for the greatest number of people."
+    },
+    {
+      term: "Deontological",
+      definition:
+        "Relating to the view that the morality of an action is determined by whether " +
+        "it follows a set of rules or duties, regardless of consequences."
+    },
+    {
+      term: "Pragmatism",
+      definition:
+        "A philosophical approach that evaluates theories or beliefs by their " +
+        "practical consequences and real-world effectiveness rather than abstract merit."
+    },
+    {
+      term: "Ambiguous",
+      definition:
+        "Open to more than one interpretation; unclear in meaning. An ambiguous " +
+        "claim can be read in multiple ways, which may be deliberate or accidental."
+    },
+    {
+      term: "Unambiguous",
+      definition:
+        "Having only one possible meaning or interpretation; perfectly clear. The " +
+        "opposite of ambiguous."
+    },
+    {
+      term: "Corollary",
+      definition:
+        "A direct and natural consequence or result of something; a proposition that " +
+        "follows with little proof from a proved one. If X is true, Y is a corollary."
+    },
+    {
+      term: "Conjecture",
+      definition:
+        "An opinion or conclusion formed on the basis of incomplete information; " +
+        "a well-reasoned guess. Distinguished from a demonstrated claim."
+    },
+    {
+      term: "Precedent-setting",
+      definition:
+        "Establishing a precedent for future cases or decisions. A precedent-setting " +
+        "ruling changes how similar cases are decided going forward."
+    },
+    {
+      term: "Adjudicate",
+      definition:
+        "To make a formal judgement or decision about a disputed matter. The role of " +
+        "a judge or arbitrator in resolving legal or factual disputes."
+    },
+    {
+      term: "Caveat (legal)",
+      definition:
+        "In legal contexts, a formal notice to a court or official body requiring " +
+        "suspension of proceedings until a party is heard. Broader usage: any warning."
+    },
+    {
+      term: "Inference to the best explanation",
+      definition:
+        "Choosing the hypothesis that would, if true, best explain the available " +
+        "evidence. Also called abduction or abductive reasoning."
+    },
+
+    /* --- Tone / register vocabulary --- */
+    {
+      term: "Sardonic",
+      definition:
+        "Grimly mocking or cynical; expressing disdain through grim humour. More " +
+        "bitter and contemptuous than ironic, and less playful than sarcastic."
+    },
+    {
+      term: "Wry",
+      definition:
+        "Using dry, often understated humour to express a slightly ironic or cynical " +
+        "point. A wry comment acknowledges the absurdity of a situation without anger."
+    },
+    {
+      term: "Indignant",
+      definition:
+        "Feeling or showing anger or annoyance at what is perceived as unfair treatment " +
+        "or injustice. In essay marking, an indignant tone (one of the 'Five I's') " +
+        "means attacking the question rather than answering it."
+    },
+    {
+      term: "Measured",
+      definition:
+        "Carefully considered and controlled; neither extreme nor hasty. A measured " +
+        "tone conveys balanced judgement and avoids overstatement."
+    },
+    {
+      term: "Polemical",
+      definition:
+        "Of, relating to, or involving polemics; strongly attacking or defending a " +
+        "point of view. A polemical piece sacrifices balance for force of argument."
+    },
+    {
+      term: "Sanguine",
+      definition:
+        "Optimistic, especially in a difficult situation. A sanguine author expects " +
+        "things to turn out well, sometimes to the point of underweighting problems."
+    },
+    {
+      term: "Derisive",
+      definition:
+        "Expressing contempt or ridicule; mocking. A derisive tone treats the " +
+        "opposing view as too foolish to deserve serious engagement."
+    },
+    {
+      term: "Acerbic",
+      definition:
+        "Sharp and forthright; typically used of comments that are harshly critical " +
+        "and somewhat bitter in tone."
+    },
+    {
+      term: "Trenchant",
+      definition:
+        "Vigorous and incisive in analysis; penetrating to the point of being " +
+        "cutting. A trenchant critique gets directly to the weakness of a position."
+    },
+    {
+      term: "Judicious",
+      definition:
+        "Having, showing, or done with good judgement; sensible and careful. A " +
+        "judicious choice is one informed by sound reasoning rather than impulse."
+    },
+    {
+      term: "Candid",
+      definition:
+        "Truthful and straightforward; frank even if the truth is unwelcome. A " +
+        "candid assessment does not soften conclusions for the sake of politeness."
+    },
+    {
+      term: "Didactic",
+      definition:
+        "Intended to teach, particularly in moral or philosophical matters. A " +
+        "didactic passage has an instructional purpose beyond mere entertainment."
+    },
+    {
+      term: "Hortatory",
+      definition:
+        "Tending or aiming to exhort; urging or calling for action. A hortatory " +
+        "passage tries to persuade the reader to do something."
+    },
+    {
+      term: "Deferential",
+      definition:
+        "Showing respectful submission to another's judgement or authority. A " +
+        "deferential author is cautious about challenging established views."
+    },
+    {
+      term: "Temperate",
+      definition:
+        "Showing moderation or self-restraint; not extreme or passionate in " +
+        "expression. A temperate argument avoids inflammatory language."
+    },
+    {
+      term: "Terse",
+      definition:
+        "Sparing of words; brief and pointed. A terse style communicates efficiently " +
+        "but may risk omitting necessary qualification."
+    },
+    {
+      term: "Circumspect",
+      definition:
+        "Wary and unwilling to take risks; carefully considering all circumstances. " +
+        "A circumspect argument anticipates objections and hedges accordingly."
+    },
+    {
+      term: "Strident",
+      definition:
+        "Presenting a point of view in an excessively forceful or aggressive manner. " +
+        "A strident argument may be persuasive in tone but overstates its certainty."
+    }
+  ];
+
   /* Push all glossary entries */
   for (var g = 0; g < glossaryEntries.length; g++) {
     DATA.glossary.push(glossaryEntries[g]);
+  }
+  for (var ge = 0; ge < glossaryExpansion.length; ge++) {
+    DATA.glossary.push(glossaryExpansion[ge]);
   }
   DATA.reference.glossary = DATA.glossary;
 
@@ -801,61 +1364,121 @@
         url: "https://www.economist.com",
         focus:
           "Leader articles and analysis. Dense, opinionated, one clear thesis per " +
-          "piece. Excellent for argument-extraction practice."
+          "piece. Excellent for argument-extraction practice.",
+        lnatReadingNote:
+          "Thesis: stated in the opening sentence of the leader — find it immediately. " +
+          "Assumptions: the Economist routinely assumes free-market premises; make these explicit. " +
+          "Support: distinguishes 'here is the evidence' paragraphs from 'here is our view' paragraphs. " +
+          "Strongest counter-argument: usually buried in a middle paragraph as a 'critics say' clause — " +
+          "isolate it and ask whether the rebuttal actually defeats it."
       },
       {
         name: "Financial Times",
         url: "https://www.ft.com",
         focus:
           "Comment and analysis sections. Economic reasoning and policy argument; " +
-          "good for assumption-identification."
+          "good for assumption-identification.",
+        lnatReadingNote:
+          "Thesis: often emerges after a paragraph of scene-setting — skip the anecdote and " +
+          "find the evaluative claim. " +
+          "Assumptions: look for unstated economic premises (e.g. growth is always desirable). " +
+          "Support: FT pieces mix quantitative data with qualitative argument; separate them and " +
+          "check which type the conclusion actually rests on. " +
+          "Strongest counter-argument: think about who benefits from the opposite policy."
       },
       {
         name: "The Guardian",
         url: "https://www.theguardian.com",
         focus:
           "Opinion and long-form features. Broad range of social and political " +
-          "topics; useful for identifying author standpoint and tone."
+          "topics; useful for identifying author standpoint and tone.",
+        lnatReadingNote:
+          "Thesis: Guardian opinion columns often signal the thesis in the headline and first sentence. " +
+          "Assumptions: the author's values (equality, rights) are frequently unstated premises. " +
+          "Support: note whether supporting paragraphs cite facts, analogies, or appeals to authority — " +
+          "LNAT questions often ask which type is being used. " +
+          "Strongest counter-argument: practise steelmanning the position the Guardian is arguing against."
       },
       {
         name: "The Independent",
         url: "https://www.independent.co.uk",
         focus:
           "Comment pieces. Mix of liberal and centrist opinion; practice " +
-          "distinguishing reported views from the author's own position."
+          "distinguishing reported views from the author's own position.",
+        lnatReadingNote:
+          "Thesis: Independent comment pieces often blend news and opinion — actively distinguish " +
+          "what the author thinks from what the author reports others thinking. " +
+          "Assumptions: look for implicit claims about what policy can achieve. " +
+          "Support: track which sentences are evidence and which are the author's inferences from evidence. " +
+          "Strongest counter-argument: identify the political or social viewpoint that would most " +
+          "forcefully object to the author's conclusion."
       },
       {
         name: "Irish Times",
         url: "https://www.irishtimes.com",
         focus:
           "Opinion and analysis. Irish and European perspectives; useful for " +
-          "passages on governance and civil liberties."
+          "passages on governance and civil liberties.",
+        lnatReadingNote:
+          "Thesis: often concerns governance, constitutional law, or civil society — apply the " +
+          "'one sentence summary' test immediately after reading. " +
+          "Assumptions: pieces on EU or state power often assume certain rights as foundational; " +
+          "make these explicit. " +
+          "Support: separate legislative or case-based evidence from normative commentary. " +
+          "Strongest counter-argument: argue from the opposing national-interest or sovereignty angle."
       },
       {
         name: "New York Times",
         url: "https://www.nytimes.com",
         focus:
           "Opinion and Sunday Review. High-quality argumentative writing; " +
-          "practise reading counter-argument structures."
+          "practise reading counter-argument structures.",
+        lnatReadingNote:
+          "Thesis: NYT opinion writers are trained for clarity — the thesis is usually explicit " +
+          "by paragraph two. " +
+          "Assumptions: American cultural and political assumptions may need unpacking for a UK-context exam. " +
+          "Support: Sunday Review pieces often use personal narrative as evidence; evaluate how strongly " +
+          "a single case supports the general claim. " +
+          "Strongest counter-argument: the NYT regularly publishes opposing columns — read both sides " +
+          "of the same debate as counter-argument practice."
       },
       {
         name: "The Scotsman",
         url: "https://www.scotsman.com",
         focus:
-          "Political and social commentary; Scottish and UK politics."
+          "Political and social commentary; Scottish and UK politics.",
+        lnatReadingNote:
+          "Thesis: identify whether the piece is arguing a policy position or a constitutional one — " +
+          "these require different types of support. " +
+          "Assumptions: often assumes readers share a view on Scottish devolution or UK governance. " +
+          "Support: look for how the author uses precedent or historical analogy to support present claims. " +
+          "Strongest counter-argument: think about how a Unionist or a Nationalist would each rebut the piece."
       },
       {
         name: "The Times",
         url: "https://www.thetimes.co.uk",
         focus:
-          "Comment and feature writing across law, politics, culture, and science."
+          "Comment and feature writing across law, politics, culture, and science.",
+        lnatReadingNote:
+          "Thesis: Times comment pieces are crisp; look for the thesis in the first or final paragraph. " +
+          "Assumptions: centre-right premises are often unstated — make them explicit. " +
+          "Support: The Times frequently uses expert testimony; ask whether the expert's credentials " +
+          "are relevant to the specific claim. " +
+          "Strongest counter-argument: imagine the response from the opposing political tradition."
       },
       {
         name: "Washington Post",
         url: "https://www.washingtonpost.com",
         focus:
           "Investigations and opinion. Strong on political reasoning and " +
-          "institutional argument."
+          "institutional argument.",
+        lnatReadingNote:
+          "Thesis: Washington Post opinion columns often make institutional-level claims (about " +
+          "democracy, courts, or executive power) — pin down the exact claim being made. " +
+          "Assumptions: look for assumptions about how institutions ought to behave. " +
+          "Support: investigative journalism blends fact-finding with editorial conclusion; separate them. " +
+          "Strongest counter-argument: consider the constitutional or procedural objection to the " +
+          "author's recommended course of action."
       }
     ],
 
@@ -1014,6 +1637,22 @@
         "All practice content on this site uses 4 options. When using third-party " +
         "materials, be aware they may not reflect current test conditions; calibrate " +
         "against the two official 2010 PDF practice papers available free at lnat.ac.uk."
+    },
+    {
+      question: "IMPORTANT — official lnat.ac.uk online simulator: 5 options vs 4 options",
+      answer:
+        "WARNING: The official online practice simulator at lnat.ac.uk displays questions " +
+        "with 5 answer options (A–E). This reflects the old exam format and does NOT match " +
+        "the current test. The real exam — and every question on this site — uses exactly " +
+        "4 answer options (A–D). " +
+        "Use the official simulator only to familiarise yourself with the on-screen interface " +
+        "(navigation, flagging, on-screen timer). Do not use it to calibrate your performance: " +
+        "five-option questions are structurally easier to eliminate down and produce inflated " +
+        "scores relative to the real four-option format. " +
+        "For accurate score benchmarking, use the two official 2010 PDF practice papers " +
+        "(available free at lnat.ac.uk) which correctly reflect the current structure, " +
+        "or use the four-option mocks on this site. " +
+        "Per lnat.ac.uk simulator page note, as of June 2026."
     }
   ];
 

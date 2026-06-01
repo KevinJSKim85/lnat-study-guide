@@ -97,6 +97,12 @@
       if (root.location && opts.updateHash !== false) {
         try { root.location.hash = viewId; } catch (e) { /* file:// */ }
       }
+      // On a genuine nav change, return to the top so the new view starts at its
+      // heading rather than wherever the previous view was scrolled. Skipped on
+      // the initial programmatic paint (focus:false) to avoid yanking the load.
+      if (opts.focus !== false && root.scrollTo) {
+        try { root.scrollTo(0, 0); } catch (e) { /* ignore */ }
+      }
       // Move focus to the panel heading so the context switch is announced and
       // keyboard users land in the new view (not stranded in the nav).
       if (active && opts.focus !== false) {

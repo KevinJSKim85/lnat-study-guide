@@ -62,7 +62,22 @@ header.site-top {
 }
 .site-top .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1rem 1.25rem; }
 .site-title { margin: 0; font-size: 1.4rem; color: var(--accent); }
+.site-title-link { color: inherit; text-decoration: none; }
+.site-title-link:hover { text-decoration: underline; }
+/* Understated personal dedication line under the title. */
+.site-dedication {
+  margin: 0.15rem 0 0;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  font-style: italic;
+  letter-spacing: 0.02em;
+}
 .site-subtitle { margin: 0.25rem 0 0; color: var(--ink-soft); font-size: 0.95rem; }
+
+/* On narrow phones, hide the long subtitle so content isn't pushed down. */
+@media (max-width: 400px) {
+  .site-subtitle { display: none; }
+}
 
 /* Navigation */
 .site-nav { margin-top: 0.75rem; }
@@ -320,15 +335,65 @@ h4 { margin: 0.8rem 0 0.3rem; }
   padding: 0.9rem 1.1rem; margin-bottom: 0.8rem;
 }
 .mock-card h3 { margin: 0 0 0.2rem; }
+.mock-card .btn { white-space: nowrap; }
+/* Last-attempt badge on a mock card. */
+.mock-last-attempt {
+  margin: 0.4rem 0 0; font-size: 0.85rem;
+  display: inline-block; padding: 0.15rem 0.55rem;
+  background: #eef2f7; border: 1px solid var(--line); border-radius: 999px;
+}
+.mock-last-label { color: var(--ink-soft); }
 .runner-bar {
   display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-  position: sticky; top: 0; z-index: 5;
+  position: sticky; top: 0; z-index: 6;
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
   padding: 0.7rem 1rem; margin-bottom: 1rem;
 }
 .runner-bar h3 { margin: 0; }
 .runner-bar-right { display: flex; align-items: center; gap: 0.8rem; }
 .section-end-btn { margin-top: 0.5rem; }
+.section-b-btn { margin: 0.3rem 0; }
+
+/* Mock question navigator (palette): compact numbered grid, sticky under the bar. */
+.mock-palette {
+  position: sticky; top: 4.2rem; z-index: 5;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 0.5rem 0.6rem; margin-bottom: 1rem;
+  max-height: 22vh; overflow: auto;
+}
+.palette-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(2.1rem, 1fr));
+  gap: 0.3rem;
+}
+.palette-cell {
+  font: inherit; font-size: 0.85rem; font-variant-numeric: tabular-nums;
+  cursor: pointer; min-height: 2.1rem; padding: 0.2rem 0;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background: #fff; color: var(--ink-soft); font-weight: 600;
+}
+.palette-cell:hover { background: #eef2f7; color: var(--accent); }
+/* Answered cells: filled navy + check, not colour-only (AC-Q8 parity). */
+.palette-cell.is-answered {
+  background: var(--accent); color: var(--accent-ink); border-color: var(--accent);
+}
+.palette-cell.is-answered::after { content: " ✓"; font-size: 0.7rem; }
+@media (max-width: 560px) {
+  .mock-palette { top: 3.6rem; max-height: 26vh; }
+  .palette-grid { grid-template-columns: repeat(auto-fill, minmax(1.9rem, 1fr)); }
+  .palette-cell { min-height: 1.9rem; font-size: 0.8rem; }
+}
+
+/* Passage grouping: one passage panel, its questions beneath it. */
+.passage-group { margin-bottom: 1.4rem; }
+.passage-group-questions { display: block; }
+
+/* Drill session bar: New-drill button + running "N of M" indicator. */
+.drill-session-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 0.8rem; margin: 0.2rem 0 0.6rem; }
+.drill-progress {
+  margin: 0; font-weight: 600; color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.drill-next { margin-top: 0.9rem; }
 
 /* Sub-tabs */
 .subtabs { display: flex; flex-wrap: wrap; gap: 0.25rem; border-bottom: 2px solid var(--line); margin-bottom: 1rem; }
@@ -419,9 +484,56 @@ h4 { margin: 0.8rem 0 0.3rem; }
 .acc-fill { display: inline-block; height: 0.7rem; background: var(--accent); border-radius: 999px; min-width: 2px; }
 .acc-label { font-variant-numeric: tabular-nums; font-weight: 600; font-size: 0.85rem; }
 
+/* Progress: weakest-type "Focus here" callout + flagged rows */
+.focus-callout { margin: 0 0 0.8rem; }
+.focus-row td { background: var(--warn-bg); }
+.focus-tag {
+  display: inline-block; margin-left: 0.5rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.02em;
+  padding: 0.05rem 0.45rem; border-radius: 999px;
+  color: #7a4a00; background: #fff; border: 1px solid var(--warn-line);
+}
+
+/* Learn: read-state in the lesson index (check + mute, not colour-only) */
+.lesson-link.is-read { color: var(--ink-soft); }
+.lesson-link.is-read::before {
+  content: "✓ "; color: var(--correct); font-weight: 700;
+}
+.lesson-link.is-read[aria-current="true"] { color: var(--accent-ink); }
+.lesson-link.is-read[aria-current="true"]::before { color: var(--accent-ink); }
+
+/* Learn: previous / next footer under an open lesson */
+.lesson-nav {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+  margin-top: 1rem; border-top: 1px solid var(--line); padding-top: 0.8rem;
+}
+.lesson-nav .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.lesson-nav-pos { font-variant-numeric: tabular-nums; }
+
+/* Reference: vocabulary flashcards */
+.flashcard-counter { margin: 0 0 0.6rem; font-variant-numeric: tabular-nums; }
+.flashcard {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 0.6rem; width: 100%; min-height: 12rem; text-align: center; cursor: pointer;
+  font: inherit; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--line);
+  border-left: 5px solid var(--accent); border-radius: var(--radius);
+  padding: 1.5rem 1.25rem; transition: background 0.1s ease;
+}
+.flashcard:hover { background: #f3f5f8; }
+.flashcard.is-flipped { border-left-color: var(--correct); background: #fbfdfb; }
+.flashcard-face-tag {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--ink-soft);
+}
+.flashcard-text { font-size: 1.25rem; font-weight: 600; line-height: 1.4; }
+.flashcard.is-flipped .flashcard-text { font-size: 1.05rem; font-weight: 400; color: var(--ink); }
+.flashcard-judge { margin-top: 0.6rem; }
+.flashcard-done { margin-top: 0.8rem; }
+
 /* Print stylesheet */
 @media print {
-  .site-nav, .storage-banner, .btn, .submit-answer, .controls-row, .filter-bar, .subtabs, .runner-bar { display: none !important; }
+  .site-nav, .storage-banner, .btn, .submit-answer, .controls-row, .filter-bar, .subtabs, .runner-bar, .mock-palette, .drill-session-bar, .lesson-nav, .flashcard-judge { display: none !important; }
   body { background: #fff; }
   .passage-panel, .question-card, .score-report, .lesson-article, .essay-card { border-color: #000; }
 }

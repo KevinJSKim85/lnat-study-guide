@@ -32,12 +32,34 @@
   }
 
   /**
+   * buildPassagePanel — build the reading-passage panel for a passage object.
+   * Kept separate from question rendering so a passage can be shown ONCE with
+   * several questions grouped beneath it (see renderPassageGroups).
+   *
+   * @param {Object} passage  passage object (id, title, genre, body)
+   * @returns {HTMLElement}
+   */
+  function buildPassagePanel(passage) {
+    var panel = el("div", { class: "passage-panel", "aria-label": "Reading passage: " + passage.title }, [
+      el("h3", { class: "passage-title", text: passage.title }),
+      el("div", { class: "passage-genre", text: "Genre: " + passage.genre + " · Original / illustrative — not an official LNAT passage" })
+    ]);
+    // Body may contain paragraph breaks marked by "\n\n".
+    String(passage.body).split(/\n\n+/).forEach(function (para) {
+      panel.appendChild(el("p", { class: "passage-body", text: para }));
+    });
+    return panel;
+  }
+
+  /**
    * renderQuestion — mount a self-marking question into `container`.
    *
    * @param {HTMLElement} container  target element (cleared before render)
    * @param {Object} question        a question object (see data/SCHEMA.md §3.2)
    * @param {Object} [opts]
    *   @param {Object} [opts.passage] passage object to show above the question
+   *   @param {Boolean} [opts.skipPassage] when true, do NOT render opts.passage
+   *     (used by renderPassageGroups, which renders the passage panel itself once)
    *   @param {Function} [opts.onSubmit] called (correct:boolean, chosenIndex:number, question)
    *   @param {Number} [opts.index]   1-based display index, e.g. "Question 3"
    * @returns {Object} controller { isSubmitted(), getChosenIndex() }
@@ -50,17 +72,10 @@
     var chosenIndex = -1;
     var inputs = [];
 
-    // Optional passage panel.
-    if (opts.passage) {
-      var panel = el("div", { class: "passage-panel", "aria-label": "Reading passage: " + opts.passage.title }, [
-        el("h3", { class: "passage-title", text: opts.passage.title }),
-        el("div", { class: "passage-genre", text: "Genre: " + opts.passage.genre + " · Original / illustrative — not an official LNAT passage" })
-      ]);
-      // Body may contain paragraph breaks marked by "\n\n".
-      String(opts.passage.body).split(/\n\n+/).forEach(function (para) {
-        panel.appendChild(el("p", { class: "passage-body", text: para }));
-      });
-      container.appendChild(panel);
+    // Optional passage panel. renderPassageGroups sets skipPassage so the shared
+    // panel above the group is not duplicated per question.
+    if (opts.passage && !opts.skipPassage) {
+      container.appendChild(buildPassagePanel(opts.passage));
     }
 
     var card = el("section", { class: "question-card", "data-question-id": question.id });
@@ -167,5 +182,80 @@
     };
   }
 
-  root.LNATEngine = { renderQuestion: renderQuestion, LETTERS: LETTERS, _el: el };
+  /**
+   * renderPassageGroups — render a list of questions GROUPED by passage so each
+   * passage's reading text appears ONCE with its questions beneath it (rather
+   * than re-rendering the full passage for every question).
+   *
+   * Questions are grouped by passageId in first-seen order; question order within
+   * a group is preserved. Each question still renders via renderQuestion, so
+   * self-marking, answer recording, and rationale/worked-solution reveal are
+   * identical to single-question rendering. The correct answer is still absent
+   * from the DOM until the user submits (AC-E2 unchanged).
+   *
+   * @param {HTMLElement} host          target element (cleared before render)
+   * @param {Array} questions           question objects, in display order
+   * @param {Object} [opts]
+   *   @param {Object} [opts.passagesById]  map passageId -> passage object
+   *   @param {Number} [opts.startIndex]    first 1-based question number (default 1)
+   *   @param {Function} [opts.onSubmit]    forwarded to each question
+   *   @param {Function} [opts.onQuestionRender] (block, question, index, controller)
+   *     called after each question card mounts (lets callers tag DOM for a palette)
+   * @returns {Array} controllers, one per question, in display order
+   */
+  function renderPassageGroups(host, questions, opts) {
+    opts = opts || {};
+    host.innerHTML = "";
+    var passagesById = opts.passagesById || {};
+    var startIndex = typeof opts.startIndex === "number" ? opts.startIndex : 1;
+    var controllers = [];
+
+    // Group questions by passageId, preserving first-seen passage order and the
+    // order of questions within each passage.
+    var order = [];
+    var groups = {};
+    questions.forEach(function (q) {
+      var pid = q.passageId;
+      if (!groups[pid]) { groups[pid] = []; order.push(pid); }
+      groups[pid].push(q);
+    });
+
+    var counter = startIndex;
+    order.forEach(function (pid) {
+      var passage = passagesById[pid];
+      var group = el("section", { class: "passage-group", "data-passage-id": pid });
+      if (passage) group.appendChild(buildPassagePanel(passage));
+      var qWrap = el("div", { class: "passage-group-questions" });
+      group.appendChild(qWrap);
+      host.appendChild(group);
+
+      groups[pid].forEach(function (q) {
+        var idx = counter++;
+        var block = el("div", { class: "qb-item" });
+        qWrap.appendChild(block);
+        var ctl = renderQuestion(block, q, {
+          // pass the passage for accessibility context but skip re-rendering it;
+          // the group already shows the panel once above these questions.
+          passage: passage,
+          skipPassage: true,
+          index: idx,
+          onSubmit: opts.onSubmit
+        });
+        controllers.push(ctl);
+        if (typeof opts.onQuestionRender === "function") {
+          opts.onQuestionRender(block, q, idx, ctl);
+        }
+      });
+    });
+
+    return controllers;
+  }
+
+  root.LNATEngine = {
+    renderQuestion: renderQuestion,
+    renderPassageGroups: renderPassageGroups,
+    buildPassagePanel: buildPassagePanel,
+    LETTERS: LETTERS,
+    _el: el
+  };
 })(typeof window !== "undefined" ? window : this);

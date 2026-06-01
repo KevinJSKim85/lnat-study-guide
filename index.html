@@ -13,7 +13,8 @@
 
   <header class="site-top">
     <div class="wrap">
-      <h1 class="site-title">LNAT Study Site</h1>
+      <h1 class="site-title"><a href="#home" class="site-title-link">LNAT Study Site</a></h1>
+      <p class="site-dedication">Designed for Yoo Jung</p>
       <p class="site-subtitle">Offline lessons, self-marking drills, timed mocks, and essay practice. All content is original / illustrative unless a source is cited.</p>
       <div id="site-header"><!-- nav injected by nav.js --></div>
     </div>
@@ -123,14 +124,18 @@
           <button type="submit" class="btn btn-primary" id="practice-start">Start drill</button>
         </div>
       </form>
+      <div class="drill-session-bar">
+        <button type="button" class="btn" id="practice-new" hidden>New drill</button>
+        <p id="practice-progress" class="drill-progress" aria-live="polite" hidden></p>
+      </div>
       <p id="practice-status" class="muted" aria-live="polite"></p>
-      <div id="practice-questions"><!-- drill questions injected --></div>
+      <div id="practice-questions"><!-- drill questions injected (grouped by passage) --></div>
     </section>
 
     <!-- ============================ MOCKS ============================ -->
     <section data-view-panel="mocks" aria-labelledby="mocks-h" hidden>
       <h2 id="mocks-h">Mocks</h2>
-      <p class="muted">Five full timed papers. Each is Section A (42 questions, 95 minutes, no negative marking) followed by Section B (one essay from three prompts, 40 minutes). After Section A you get a score out of 42 with a band label and a per-type breakdown, and you can review every question with its rationale.</p>
+      <p class="muted">Seven full timed papers. Each is Section A (42 questions, 95 minutes, no negative marking) followed by Section B (one essay from three prompts, 40 minutes). After Section A you get a score out of 42 with a band label and a per-type breakdown, and you can review every question with its rationale.</p>
       <div id="mock-list"><!-- mock cards injected --></div>
 
       <div id="mock-runner" hidden>
@@ -144,7 +149,8 @@
             <button type="button" id="mock-quit" class="btn">Quit mock</button>
           </div>
         </div>
-        <div id="mock-questions"><!-- Section A questions injected --></div>
+        <nav id="mock-palette" class="mock-palette" aria-label="Question navigator" hidden><!-- numbered palette injected --></nav>
+        <div id="mock-questions"><!-- Section A questions injected (grouped by passage) --></div>
         <div id="mock-essay" hidden><!-- Section B injected --></div>
         <div id="mock-report" aria-live="polite"><!-- score report injected --></div>
       </div>
@@ -234,6 +240,7 @@
 
       <div class="subtabs" role="tablist" aria-label="Reference sections">
         <button type="button" class="subtab" role="tab" data-ref-tab="glossary" aria-selected="true">Glossary</button>
+        <button type="button" class="subtab" role="tab" data-ref-tab="flashcards" aria-selected="false">Flashcards</button>
         <button type="button" class="subtab" role="tab" data-ref-tab="reading" aria-selected="false">Recommended reading</button>
         <button type="button" class="subtab" role="tab" data-ref-tab="faq" aria-selected="false">FAQ</button>
       </div>
@@ -247,6 +254,11 @@
         </div>
         <p id="glossary-count" class="muted" aria-live="polite"></p>
         <dl id="glossary-list"><!-- glossary injected --></dl>
+      </div>
+
+      <div class="subtab-panel" data-ref-panel="flashcards" hidden>
+        <p class="muted">Flip through the glossary as flashcards. Click the card (or press Space) to reveal the definition, then mark <strong>Got it</strong> or <strong>Review again</strong>. Cards you mark for review come back at the end. Use the arrow keys or Enter to move on.</p>
+        <div id="flashcards"><!-- flashcard trainer injected --></div>
       </div>
 
       <div class="subtab-panel" data-ref-panel="reading" hidden>
@@ -311,11 +323,14 @@
   <script src="data/questions/drill-b.js"></script>
   <script src="data/questions/drill-c.js"></script>
   <script src="data/questions/drill-d.js"></script>
+  <script src="data/questions/drill-e.js"></script>
   <script src="data/mocks/mock-01.js"></script>
   <script src="data/mocks/mock-02.js"></script>
   <script src="data/mocks/mock-03.js"></script>
   <script src="data/mocks/mock-04.js"></script>
   <script src="data/mocks/mock-05.js"></script>
+  <script src="data/mocks/mock-06.js"></script>
+  <script src="data/mocks/mock-07.js"></script>
   <!-- Section B: fundamentals (canonical prompt-601..609) before themes -->
   <script src="data/essays/fundamentals.js"></script>
   <script src="data/essays/theme-lawjustice.js"></script>
@@ -324,9 +339,12 @@
   <script src="data/essays/theme-ethics.js"></script>
   <script src="data/essays/theme-politics.js"></script>
   <script src="data/essays/theme-mediatech.js"></script>
+  <!-- Section B supplements: 7-criterion rubric, 40-min countdown, fresh prompts + model essays -->
+  <script src="data/essays/supplements.js"></script>
   <!-- Auxiliary singletons -->
   <script src="data/lessons/lessons-a.js"></script>
   <script src="data/lessons/lessons-b.js"></script>
+  <script src="data/lessons/lessons-c.js"></script>
   <script src="data/schedule.js"></script>
   <script src="data/reference.js"></script>
 

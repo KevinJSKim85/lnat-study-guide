@@ -5,3 +5,4 @@ node_modules/
 *.pid
 .idea/
 .vscode/
+.vercel

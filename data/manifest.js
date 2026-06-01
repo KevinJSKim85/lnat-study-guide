@@ -12,7 +12,7 @@
  *      and the validator load it first.)
  *   1. Passage/question producers (drills, mocks) load before anything that could
  *      reference passages/questions. Each mock file is self-contained (it authors
- *      its own passages, questions and prompts), so the five mocks are mutually
+ *      its own passages, questions and prompts), so the seven mocks are mutually
  *      independent; drills are independent too.
  *   2. Section B: fundamentals.js loads BEFORE the six theme files, because it
  *      defines the nine canonical official prompts (prompt-601..609) that several
@@ -39,11 +39,14 @@
     "data/questions/drill-b.js",
     "data/questions/drill-c.js",
     "data/questions/drill-d.js",
+    "data/questions/drill-e.js",
     "data/mocks/mock-01.js",
     "data/mocks/mock-02.js",
     "data/mocks/mock-03.js",
     "data/mocks/mock-04.js",
     "data/mocks/mock-05.js",
+    "data/mocks/mock-06.js",
+    "data/mocks/mock-07.js",
 
     // --- Section B: fundamentals FIRST (canonical prompt-601..609), then themes ---
     "data/essays/fundamentals.js",
@@ -53,10 +56,14 @@
     "data/essays/theme-ethics.js",
     "data/essays/theme-politics.js",
     "data/essays/theme-mediatech.js",
+    // supplements.js is self-contained: it authors its own prompts (prompt-680..694)
+    // before the model essays that reference them, so it can load after the themes.
+    "data/essays/supplements.js",
 
     // --- Auxiliary singletons (independent) ---
     "data/lessons/lessons-a.js",
     "data/lessons/lessons-b.js",
+    "data/lessons/lessons-c.js",
     "data/schedule.js",
     "data/reference.js"
   ];
