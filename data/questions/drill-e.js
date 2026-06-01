@@ -1258,16 +1258,16 @@
         "A fabricated video can in principle be exposed.",
         "Software can graft a face onto footage a person never filmed.",
         "The technology cannot be recalled once released.",
-        "A genuine recording of wrongdoing could be dismissed as a probable fake."
+        "Bad actors gain more from the general doubt the technology creates than from any single forgery."
       ],
       answerIndex: 3,
       perOptionRationale: [
         "Wrong: the exposability of a forgery is stated explicitly.",
         "Wrong: the face-grafting capability is stated outright.",
         "Wrong: that the tools 'cannot be recalled' is stated directly.",
-        "Correct: the implication of widespread doubt is that the real video catching wrongdoing 'can be waved away as a probable fake.'"
+        "Correct: calling the liar's 'true gift' the doubt he can cast rather than the false evidence he can make implies the wider doubt is the greater prize, though the passage never ranks them in those words."
       ],
-      workedSolution: "While the passage states the doubt directly in one place, the worked danger, that real evidence loses its force, is the implication the author wants the reader to grasp from 'the liar's true gift.'",
+      workedSolution: "The passage contrasts the forgery, which 'can in principle be exposed,' with the lasting injury to trust, then names 'the liar's true gift' as 'not the false evidence he can manufacture but the doubt he can now cast on the true.' From that contrast the reader infers, without being told outright, that a bad actor profits more from the climate of general doubt than from any single fake.",
       difficulty: "hard",
       source: "illustrative"
     },
@@ -1277,19 +1277,19 @@
       type: "implied",
       stem: "The passage implies which of the following about narrowly trained workers?",
       options: [
-        "They are the most easily stranded when their craft is automated.",
+        "Breadth of education offers more protection against automation than narrow training does.",
         "They earn higher wages than broadly educated workers.",
         "A liberal-arts degree is ruinously expensive.",
         "The world changes its trades every decade."
       ],
       answerIndex: 0,
       perOptionRationale: [
-        "Correct: this is the author's stated point, presented as the very reason breadth matters.",
+        "Correct: if the narrowly trained worker is the one 'most easily stranded' when a craft is automated, and breadth is offered as the answer to that very risk, the reader infers breadth shields against automation better than narrow training, a comparison the passage never states outright.",
         "Wrong: no wage comparison is made or implied.",
         "Wrong: the cost of a degree is stated directly, not implied.",
         "Wrong: the changing-trades claim is stated outright."
       ],
-      workedSolution: "The text states the narrowly trained worker is 'most easily stranded when his one craft is automated away.' Among the options, this is the supported point, the others being explicit details.",
+      workedSolution: "The passage says the narrowly trained worker is 'most easily stranded when his one craft is automated away' and presents the broad foundation as the 'stronger argument' for a world that 'changes its trades every decade.' Putting those together, the reader infers that breadth protects against automation more than narrow training does, though the text never makes that comparison in so many words.",
       difficulty: "medium",
       source: "illustrative"
     },
