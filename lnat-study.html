@@ -291,6 +291,11 @@ h4 { margin: 0.8rem 0 0.3rem; }
 /* Generic layout helpers */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
 @media (max-width: 720px) { .grid-2 { grid-template-columns: 1fr; } }
+@media (max-width: 560px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .grid-2 > * { min-width: 0; }
+  .panel-card { min-width: 0; max-width: 100%; }
+}
 
 .facts-list { margin: 0; padding-left: 1.1rem; }
 .facts-list li { margin: 0.25rem 0; }
