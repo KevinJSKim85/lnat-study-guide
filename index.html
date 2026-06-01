@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LNAT Study Site — Learn, Practice & Mocks</title>
+  <!-- Inline data-URI favicon: avoids a favicon.ico request (no CDN, works offline). -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='3' fill='%231f4e79'/%3E%3Ctext x='8' y='12' font-size='10' text-anchor='middle' fill='white' font-family='sans-serif'%3EL%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+
+  <header class="site-top">
+    <div class="wrap">
+      <h1 class="site-title">LNAT Study Site</h1>
+      <p class="site-subtitle">Offline lessons, self-marking drills, timed mocks, and essay practice. All content is original / illustrative unless a source is cited.</p>
+      <div id="site-header"><!-- nav injected by nav.js --></div>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============================ HOME / ORIENTATION ============================ -->
+    <section data-view-panel="home" aria-labelledby="home-h">
+      <h2 id="home-h">The LNAT at a glance</h2>
+      <div id="home-overview"><!-- overview injected --></div>
+
+      <div class="grid-2">
+        <div class="panel-card">
+          <h3>Exact format</h3>
+          <div id="home-format"><!-- format injected --></div>
+        </div>
+        <div class="panel-card">
+          <h3>Scoring &amp; competitive bands</h3>
+          <div id="home-scoring"><!-- scoring injected --></div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <h3>2026/27 timeline &amp; key deadlines</h3>
+        <div id="home-timeline"><!-- timeline injected --></div>
+      </div>
+
+      <div class="panel-card">
+        <h3>The nine LNAT universities</h3>
+        <div id="home-universities"><!-- universities injected --></div>
+      </div>
+
+      <div class="panel-card">
+        <h3>How to use this site</h3>
+        <ol class="how-to-list">
+          <li><strong>Start here</strong> — read the format and scoring above, then take the quick diagnostic below.</li>
+          <li><strong>Learn</strong> — work through the 14 Section A lessons, grouped by skill cluster.</li>
+          <li><strong>Practice</strong> — drill any question type with instant self-marking and worked solutions.</li>
+          <li><strong>Mocks</strong> — sit a full timed paper, then review every question.</li>
+          <li><strong>Essays</strong> — study the fundamentals, theme argument banks, model essays, and write to the clock.</li>
+          <li><strong>Schedule</strong> — follow the 10-week intensive plan day by day.</li>
+          <li><strong>Reference</strong> — search the glossary, recommended reading, and FAQ.</li>
+          <li><strong>Progress</strong> — track accuracy by type and mock scores; export a backup any time.</li>
+        </ol>
+        <div class="controls-row">
+          <a class="btn btn-primary" href="#practice" id="home-go-diagnostic">Go to the diagnostic drill</a>
+          <a class="btn" href="#learn">Browse the lessons</a>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <h3>Quick diagnostic (1 sample question)</h3>
+        <p class="muted">Answer this to see a recommended starting point. (Illustrative content — not a real LNAT item.)</p>
+        <div id="home-diagnostic"><!-- question injected --></div>
+        <p id="diagnostic-recommendation" class="honesty-note" hidden></p>
+      </div>
+
+      <p class="muted" id="home-source-note"></p>
+    </section>
+
+    <!-- ============================ LEARN — SECTION A LESSONS ============================ -->
+    <section data-view-panel="learn" aria-labelledby="learn-h" hidden>
+      <h2 id="learn-h">Learn — Section A lessons</h2>
+      <p class="muted">All 14 lessons, grouped by skill cluster. Each lesson covers what the type is, how to recognise it, a worked example, the common traps, and a strategy. Select a lesson to open it.</p>
+      <div class="learn-layout">
+        <nav class="lesson-index" aria-label="Lesson list">
+          <div id="lesson-index"><!-- lesson index injected --></div>
+        </nav>
+        <div class="lesson-detail" id="lesson-detail" aria-live="polite">
+          <!-- selected lesson injected -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================ PRACTICE — DRILLS ============================ -->
+    <section data-view-panel="practice" aria-labelledby="practice-h" hidden>
+      <h2 id="practice-h">Practice — drills</h2>
+      <p class="muted">Drill questions by type and difficulty. Pick an option and submit: the engine marks instantly and reveals why each option is right or wrong, plus a worked solution. The correct answer is not present on the page until you submit. Mock items stay unseen — these are dedicated practice questions.</p>
+
+      <form class="filter-bar" id="practice-filters" aria-label="Drill filters">
+        <div class="field">
+          <label for="filter-type">Question type</label>
+          <select id="filter-type" name="type">
+            <option value="all">All types</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-difficulty">Difficulty</label>
+          <select id="filter-difficulty" name="difficulty">
+            <option value="all">All difficulties</option>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="filter-count">How many</label>
+          <select id="filter-count" name="count">
+            <option value="5">5 questions</option>
+            <option value="10" selected>10 questions</option>
+            <option value="20">20 questions</option>
+            <option value="0">All matching</option>
+          </select>
+        </div>
+        <div class="field field-actions">
+          <button type="submit" class="btn btn-primary" id="practice-start">Start drill</button>
+        </div>
+      </form>
+      <p id="practice-status" class="muted" aria-live="polite"></p>
+      <div id="practice-questions"><!-- drill questions injected --></div>
+    </section>
+
+    <!-- ============================ MOCKS ============================ -->
+    <section data-view-panel="mocks" aria-labelledby="mocks-h" hidden>
+      <h2 id="mocks-h">Mocks</h2>
+      <p class="muted">Five full timed papers. Each is Section A (42 questions, 95 minutes, no negative marking) followed by Section B (one essay from three prompts, 40 minutes). After Section A you get a score out of 42 with a band label and a per-type breakdown, and you can review every question with its rationale.</p>
+      <div id="mock-list"><!-- mock cards injected --></div>
+
+      <div id="mock-runner" hidden>
+        <div class="runner-bar">
+          <div>
+            <h3 id="mock-runner-title">Mock</h3>
+            <p class="muted" id="mock-phase-label"></p>
+          </div>
+          <div class="runner-bar-right">
+            <span id="mock-timer" class="timer-display" aria-live="polite"></span>
+            <button type="button" id="mock-quit" class="btn">Quit mock</button>
+          </div>
+        </div>
+        <div id="mock-questions"><!-- Section A questions injected --></div>
+        <div id="mock-essay" hidden><!-- Section B injected --></div>
+        <div id="mock-report" aria-live="polite"><!-- score report injected --></div>
+      </div>
+    </section>
+
+    <!-- ============================ ESSAYS — SECTION B ============================ -->
+    <section data-view-panel="essays" aria-labelledby="essays-h" hidden>
+      <h2 id="essays-h">Essays — Section B</h2>
+      <p class="honesty-note">Section B is self-assessed against a rubric; it is not auto-graded. The mechanical checklist below catches structural and surface problems reliably, but whether your argument persuades a reader who does not share your assumptions needs a real human reader.</p>
+
+      <div class="subtabs" role="tablist" aria-label="Essay sections">
+        <button type="button" class="subtab" role="tab" data-essay-tab="guide" aria-selected="true">Fundamentals</button>
+        <button type="button" class="subtab" role="tab" data-essay-tab="banks" aria-selected="false">Argument banks</button>
+        <button type="button" class="subtab" role="tab" data-essay-tab="prompts" aria-selected="false">Prompt bank</button>
+        <button type="button" class="subtab" role="tab" data-essay-tab="models" aria-selected="false">Model essays</button>
+        <button type="button" class="subtab" role="tab" data-essay-tab="practice" aria-selected="false">Practice</button>
+      </div>
+
+      <div class="subtab-panel" data-essay-panel="guide">
+        <div id="essay-guide"><!-- fundamentals + checklist injected --></div>
+      </div>
+
+      <div class="subtab-panel" data-essay-panel="banks" hidden>
+        <p class="muted">Six theme argument banks: key positions, counter-positions, concrete examples, and traceable facts you can deploy in an essay.</p>
+        <div class="filter-bar">
+          <div class="field">
+            <label for="bank-theme">Theme</label>
+            <select id="bank-theme"></select>
+          </div>
+        </div>
+        <div id="essay-banks"><!-- argument bank injected --></div>
+      </div>
+
+      <div class="subtab-panel" data-essay-panel="prompts" hidden>
+        <p class="muted">The full prompt bank. Official LNAT prompts are clearly labelled and cited; all others are original / illustrative.</p>
+        <div class="filter-bar">
+          <div class="field">
+            <label for="prompt-theme">Theme</label>
+            <select id="prompt-theme">
+              <option value="all">All themes</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="prompt-source">Source</label>
+            <select id="prompt-source">
+              <option value="all">All prompts</option>
+              <option value="official-cited">Official (cited)</option>
+              <option value="illustrative">Illustrative</option>
+            </select>
+          </div>
+        </div>
+        <p id="prompt-count" class="muted" aria-live="polite"></p>
+        <div id="essay-prompts"><!-- prompt list injected --></div>
+      </div>
+
+      <div class="subtab-panel" data-essay-panel="models" hidden>
+        <p class="muted">12 model essays and 6 weak essays. Each is shown with its annotations — every annotation names a rubric dimension or a Five-I pitfall and explains how the essay hits or fails it.</p>
+        <div class="filter-bar">
+          <div class="field">
+            <label for="model-quality">Show</label>
+            <select id="model-quality">
+              <option value="all">All essays</option>
+              <option value="model">Model (strong) only</option>
+              <option value="weak">Weak only</option>
+            </select>
+          </div>
+        </div>
+        <div id="essay-models"><!-- model/weak essays injected --></div>
+      </div>
+
+      <div class="subtab-panel" data-essay-panel="practice" hidden>
+        <p class="muted">Pick a prompt, start the 40-minute Section B timer, write in the box, and on finish the self-marking checklist appears. Your essay text stays in your browser only.</p>
+        <div id="essay-practice"><!-- practice editor injected --></div>
+      </div>
+    </section>
+
+    <!-- ============================ SCHEDULE ============================ -->
+    <section data-view-panel="schedule" aria-labelledby="schedule-h" hidden>
+      <h2 id="schedule-h">Schedule — 10-week intensive plan</h2>
+      <p class="muted">A day-by-day plan to an early-September 2026 test date. If targeting Oxford or Cambridge (sit by 15 October 2026), shift every week one week later.</p>
+      <div id="schedule-weeks"><!-- weeks injected --></div>
+    </section>
+
+    <!-- ============================ REFERENCE ============================ -->
+    <section data-view-panel="reference" aria-labelledby="reference-h" hidden>
+      <h2 id="reference-h">Reference</h2>
+
+      <div class="subtabs" role="tablist" aria-label="Reference sections">
+        <button type="button" class="subtab" role="tab" data-ref-tab="glossary" aria-selected="true">Glossary</button>
+        <button type="button" class="subtab" role="tab" data-ref-tab="reading" aria-selected="false">Recommended reading</button>
+        <button type="button" class="subtab" role="tab" data-ref-tab="faq" aria-selected="false">FAQ</button>
+      </div>
+
+      <div class="subtab-panel" data-ref-panel="glossary">
+        <div class="filter-bar">
+          <div class="field field-grow">
+            <label for="glossary-search">Search the glossary</label>
+            <input type="search" id="glossary-search" placeholder="e.g. assumption, specious, tone…" autocomplete="off">
+          </div>
+        </div>
+        <p id="glossary-count" class="muted" aria-live="polite"></p>
+        <dl id="glossary-list"><!-- glossary injected --></dl>
+      </div>
+
+      <div class="subtab-panel" data-ref-panel="reading" hidden>
+        <div id="reading-content"><!-- reading injected --></div>
+      </div>
+
+      <div class="subtab-panel" data-ref-panel="faq" hidden>
+        <div id="faq-list"><!-- faq injected --></div>
+      </div>
+    </section>
+
+    <!-- ============================ PROGRESS ============================ -->
+    <section data-view-panel="progress" aria-labelledby="progress-h" hidden>
+      <h2 id="progress-h">Progress</h2>
+      <p id="storage-status" class="muted">Detecting storage…</p>
+
+      <div class="grid-2">
+        <div class="panel-card">
+          <h3>Overall</h3>
+          <div id="progress-overall"><!-- summary injected --></div>
+        </div>
+        <div class="panel-card">
+          <h3>Mocks taken</h3>
+          <div id="progress-mocks"><!-- mock history injected --></div>
+        </div>
+      </div>
+
+      <div class="panel-card">
+        <h3>Accuracy by question type</h3>
+        <div id="progress-bytype"><!-- per-type table injected --></div>
+      </div>
+
+      <div class="panel-card">
+        <h3>Lessons viewed</h3>
+        <div id="progress-lessons"><!-- lessons-viewed injected --></div>
+      </div>
+
+      <div class="panel-card">
+        <h3>Backup &amp; restore</h3>
+        <p class="muted">For automatic saving across reloads, open this site in Chrome, Edge, or Firefox. Safari over <code>file://</code> may not persist — use <strong>Export progress</strong> to keep a copy.</p>
+        <div class="controls-row">
+          <button type="button" id="export-progress" class="btn btn-primary">Export progress</button>
+          <label class="btn" for="import-progress">Import progress
+            <input type="file" id="import-progress" accept="application/json,.json" hidden>
+          </label>
+          <button type="button" id="reset-progress" class="btn">Reset progress</button>
+        </div>
+        <p id="import-status" class="muted" aria-live="polite"></p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Engine load order: loader FIRST, then PRODUCTION data (order = data/manifest.js),
+       then engine modules, then bootstrap. SAMPLE.js is a dev fixture and is
+       intentionally NOT loaded in production. -->
+  <script src="assets/js/engine/loader.js"></script>
+
+  <!-- Production data (order = data/manifest.js). Engine buckets first. -->
+  <!-- Section A: passage/question producers (drills, then mocks) -->
+  <script src="data/questions/drill-a.js"></script>
+  <script src="data/questions/drill-b.js"></script>
+  <script src="data/questions/drill-c.js"></script>
+  <script src="data/questions/drill-d.js"></script>
+  <script src="data/mocks/mock-01.js"></script>
+  <script src="data/mocks/mock-02.js"></script>
+  <script src="data/mocks/mock-03.js"></script>
+  <script src="data/mocks/mock-04.js"></script>
+  <script src="data/mocks/mock-05.js"></script>
+  <!-- Section B: fundamentals (canonical prompt-601..609) before themes -->
+  <script src="data/essays/fundamentals.js"></script>
+  <script src="data/essays/theme-lawjustice.js"></script>
+  <script src="data/essays/theme-civillib.js"></script>
+  <script src="data/essays/theme-education.js"></script>
+  <script src="data/essays/theme-ethics.js"></script>
+  <script src="data/essays/theme-politics.js"></script>
+  <script src="data/essays/theme-mediatech.js"></script>
+  <!-- Auxiliary singletons -->
+  <script src="data/lessons/lessons-a.js"></script>
+  <script src="data/lessons/lessons-b.js"></script>
+  <script src="data/schedule.js"></script>
+  <script src="data/reference.js"></script>
+
+  <!-- Engine modules + bootstrap -->
+  <script src="assets/js/engine/engine.js"></script>
+  <script src="assets/js/engine/timer.js"></script>
+  <script src="assets/js/engine/mock.js"></script>
+  <script src="assets/js/engine/progress.js"></script>
+  <script src="assets/js/engine/nav.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
