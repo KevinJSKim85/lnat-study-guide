@@ -853,7 +853,15 @@
     essayHost.appendChild(buildEssayWriter(prompts, {
       sectionLabel: "Section B",
       onTick: function (str) { timerDisplay.textContent = "Section B: " + str; },
-      onTimerExpire: function () { timerDisplay.textContent = "Section B time up"; }
+      onTimerExpire: function () { timerDisplay.textContent = "Section B time up"; },
+      // After self-marking, offer a fresh essay so the mock does not dead-end.
+      // Re-running startSectionB rebuilds the prompt chooser + timer + box; the
+      // "Return to mocks" control (added in buildChecklistView) leaves the runner.
+      onWriteAnother: function () {
+        if (!mockState) return;
+        startSectionB();
+      },
+      onReturnToMocks: quitMock
     }));
 
     essayHost.scrollIntoView ? essayHost.scrollIntoView({ block: "start" }) : null;
@@ -1214,9 +1222,10 @@
       finishBtn.disabled = true;
       var n = countWords();
       clear(checklistMount);
-      // Pass the reset callback only when one was supplied (the standalone
-      // practice tab). Mock Section B is one-shot, so it gets no reset button.
-      checklistMount.appendChild(buildChecklistView(n, opts.onWriteAnother));
+      // Reset affordances after self-marking. The standalone practice tab and
+      // Mock Section B both pass onWriteAnother; Mock Section B additionally
+      // passes onReturnToMocks so the runner is never a dead-end.
+      checklistMount.appendChild(buildChecklistView(n, opts.onWriteAnother, opts.onReturnToMocks));
       checklistMount.scrollIntoView ? checklistMount.scrollIntoView({ block: "start" }) : null;
     }
     finishBtn.addEventListener("click", finish);
@@ -1228,8 +1237,10 @@
   // Render the self-marking checklist (the essayGuide 'essay-checklist' doc),
   // prefixed with the live word count for item 16, and carrying the honesty note.
   // When onWriteAnother is supplied, a "Write another essay" button is appended
-  // that resets the practice (pick prompt -> timer -> write).
-  function buildChecklistView(wordCount, onWriteAnother) {
+  // that resets the practice (pick prompt -> timer -> write). When onReturnToMocks
+  // is supplied (Mock Section B), a "Return to mocks" button is appended too so
+  // the mock essay flow is never a dead-end.
+  function buildChecklistView(wordCount, onWriteAnother, onReturnToMocks) {
     var DATA = root.LNAT_DATA;
     var checklist = (DATA.essayGuide || []).filter(function (g) { return g.id === "essay-checklist"; })[0];
     var card = E("div", { class: "panel-card checklist-card" });
@@ -1244,11 +1255,18 @@
     } else {
       card.appendChild(E("p", { class: "muted", text: "Checklist content unavailable." }));
     }
-    if (typeof onWriteAnother === "function") {
+    if (typeof onWriteAnother === "function" || typeof onReturnToMocks === "function") {
       var againRow = E("div", { class: "controls-row" });
-      var againBtn = E("button", { type: "button", class: "btn btn-primary", text: "Write another essay" });
-      againBtn.addEventListener("click", onWriteAnother);
-      againRow.appendChild(againBtn);
+      if (typeof onWriteAnother === "function") {
+        var againBtn = E("button", { type: "button", class: "btn btn-primary", text: "Write another essay" });
+        againBtn.addEventListener("click", onWriteAnother);
+        againRow.appendChild(againBtn);
+      }
+      if (typeof onReturnToMocks === "function") {
+        var backBtn = E("button", { type: "button", class: "btn", text: "Return to mocks" });
+        backBtn.addEventListener("click", onReturnToMocks);
+        againRow.appendChild(backBtn);
+      }
       card.appendChild(againRow);
     }
     return card;
@@ -1466,6 +1484,24 @@
     card.appendChild(faceTag);
     card.appendChild(faceText);
     card.addEventListener("click", flip);
+    // Keydown on the focused card. Space ALWAYS flips and is stopped from
+    // propagating so the page never scrolls and the document handler does not
+    // double-fire. Enter flips only when the card is face-up (Term); once flipped
+    // it falls through to the document handler, which keeps the existing design
+    // (Enter = "Got it" + advance on a flipped card).
+    card.addEventListener("keydown", function (ev) {
+      if (ev.key === " " || ev.key === "Spacebar") {
+        ev.preventDefault();
+        ev.stopPropagation();
+        flip();
+      } else if (ev.key === "Enter") {
+        // Suppress the native button click (it would re-fire flip()) for BOTH
+        // states. When face-up, flip here. When flipped, let the event bubble to
+        // the document handler so the existing "Enter = Got it + advance" holds.
+        ev.preventDefault();
+        if (!flipped) { ev.stopPropagation(); flip(); }
+      }
+    });
 
     // Judgement controls (shown once the card is flipped).
     var judgeRow = E("div", { class: "controls-row flashcard-judge", hidden: "hidden" });
@@ -1519,6 +1555,10 @@
       if (current < 0) return;
       flipped = !flipped;
       render();
+      // Keep keyboard focus on the card so Space/Enter keeps flipping instead of
+      // landing on the heading (where Space would scroll the page). Guarded to
+      // the visible panel so the initial render never steals focus.
+      if (panelVisible()) { try { card.focus({ preventScroll: true }); } catch (e) { /* ignore */ } }
     }
     function judge(gotIt) {
       if (current < 0 || !flipped) return;

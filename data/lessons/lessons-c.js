@@ -90,7 +90,11 @@
 
         "<h3>4. Circular reasoning (begging the question)</h3>" +
         "<p><strong>What it is:</strong> the conclusion is smuggled into the premises, so the " +
-        "argument assumes the very thing it claims to prove.</p>" +
+        "argument assumes the very thing it claims to prove. The two labels are often used " +
+        "interchangeably, though strictly they pick out slightly different faults — \"circular " +
+        "reasoning\" stresses the premise restating the conclusion, while \"begging the question\" " +
+        "stresses assuming a contested point without support; for LNAT purposes treat them as the " +
+        "same family.</p>" +
         "<p><strong>How it appears:</strong> often disguised by rewording — \"The policy is " +
         "the right one because it is the correct approach\"; \"He is trustworthy because he " +
         "would never lie.\"</p>" +
@@ -200,8 +204,11 @@
         "<li>Option A names a real <strong>hasty-generalisation / scope</strong> problem (one road " +
         "→ every road), but it attacks the <em>extension</em> of the policy, not the core claim " +
         "that the cameras worked. It is a genuine flaw, just not the primary one the stem targets.</li>" +
-        "<li>Option C names the <strong>false-dichotomy / straw-man</strong> move in the last " +
-        "sentence (objectors = dangerous drivers). Again real, but peripheral to the causal claim.</li>" +
+        "<li>Option C names the <strong>ad hominem / false-dichotomy</strong> move in the last " +
+        "sentence: it attacks the objectors themselves (\"those who enjoy driving dangerously\") " +
+        "rather than their case, and splits everyone into dangerous drivers or the unworried. That " +
+        "is an attack on the person plus a false either/or — not a straw man, which would " +
+        "misrepresent an opposing <em>argument</em>. Again real, but peripheral to the causal claim.</li>" +
         "<li>Option D is a distraction: a missing definition is not what undermines the reasoning.</li>" +
         "</ul>" +
         "<p>Notice how naming the flaw converts directly into the answer. \"The cameras caused the " +
